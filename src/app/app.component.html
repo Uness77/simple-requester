@@ -1,0 +1,61 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid cont-style">
+  <div style="text-align:center">
+    <img width="350" alt="Angular Logo" src="../assets/0.png">
+    <h1>Welcome to {{ title }}</h1>
+  </div>
+
+  <!--Requester row-->
+  <h2>Select one of the cases : </h2>
+
+  <div class="row requests-row">
+    <!--First Requester-->
+    <div class="col-sm-4">
+      <div class="card">
+        <h5 class="card-header">Case 1</h5>
+        <div class="card-body">
+          <h5 class="card-title">URL: api/firstCaseScenario</h5>
+          <p class="card-text">Simple GET Request To BackEnd deployed as a container on AKS</p>
+          <button type="button" class="btn btn-primary float-right" [disabled]="isCurrentlyRequesting" (click)="executeFirstCaseScenario()">Send Request</button>
+        </div>
+      </div>
+    </div>
+    <!--Second requester-->
+    <div class="col-sm-4">
+      <div class="card">
+        <h5 class="card-header">Case 2</h5>
+        <div class="card-body">
+          <h5 class="card-title">URL: api/secondCaseScenario</h5>
+          <p class="card-text">Simple GET Request To BackEnd in order to fetch a secret from azure vault.</p>
+          <button type="button" class="btn btn-primary float-right" [disabled]="isCurrentlyRequesting" (click)="executeSecondCaseScenario()">Send Request</button>
+        </div>
+      </div>
+    </div>
+    <!--Third Requester-->
+    <div class="col-sm-4">
+      <div class="card">
+        <h5 class="card-header">Case 3</h5>
+        <div class="card-body">
+          <h5 class="card-title">URL: api/thirdCaseScenario</h5>
+          <p class="card-text">Simple GET Request To BackEnd in order to fetch data from Postgre DB.</p>
+          <button type="button" class="btn btn-primary float-right" [disabled]="isCurrentlyRequesting" (click)="executeThirdCaseScenario()">Send Request</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Request output-->
+  <h2 *ngIf="requestLogs.length > 0">Request output : </h2>
+  <div *ngIf="requestLogs.length > 0" class="row requests-row">
+    <div class="col-sm-12">
+      <div class="shell-wrap">
+        <p class="shell-top-bar">Case number will be displayed here</p>
+        <ul *ngFor="let log of requestLogs" class="shell-body">
+          <li>{{log}}</li>
+        </ul>
+      </div>
+    <button type="button" class="btn btn-danger clear-logs" (click)="clearRequestLogs()">Clear request logs</button>
+    </div>
+  </div>
+</div>
+
